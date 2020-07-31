@@ -35,3 +35,19 @@ increase([]).
 increase([_]).
 increase([X,Y]) :- X #< Y, !.
 increase([X,Y|T]) :- X #< Y, !, increase([Y|T]).
+
+
+trains([[1,2,0,1], % from station, to station, departs at, arrives at
+        [1,3,1,3],
+        [2,3,4,5],
+        [2,3,0,1],
+        [3,4,5,6],
+        [3,4,2,3],
+        [3,4,8,9]]).
+
+anypath(A, D, Ps) :-
+        Ps = [[A,B,_T0,T1],[B,C,T2,T3],[C,D,T4,_T5]],
+        T2 #> T1,
+        T4 #> T3,
+        trains(Ts),
+        tuples_in(Ps, Ts).
