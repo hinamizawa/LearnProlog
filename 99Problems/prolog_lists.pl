@@ -18,3 +18,23 @@ my_len([],0).
 my_len([_|T],N) :-
     my_len(T,M),
     N is M+1.
+
+% 1.05 (*) Reverse a list.
+my_reverse(L, R) :- my_reverse(L,[],R).
+
+my_reverse([H|T],A,R) :- my_reverse(T,[H|A],R).
+my_reverse([],R,R).
+
+/*
+reverse(Xs, Ys) :-
+    reverse(Xs, [], Ys, Ys).
+
+reverse([], Ys, Ys, []).
+reverse([X|Xs], Rs, Ys, [_|Bound]) :-
+    reverse(Xs, [X|Rs], Ys, Bound).
+*/
+
+% 1.06 (*) Find out whether a list is a palindrome.
+palindrome(X) :- reverse(X,X).
+
+% 1.07 (**) Flatten a nested list structure.
