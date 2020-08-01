@@ -61,3 +61,9 @@ flatten([Hd|Tl], Tail, List) :-
     flatten(Tl, Tail, FlatHeadTail).
 flatten(NonList, Tl, [NonList|Tl]).
 */
+
+% 1.08 (**) Eliminate consecutive duplicates of list elements.
+compress([],[]).
+compress([X],[X]).
+compress([X,X|T],[X|L]) :- !, compress([X|T],[X|L]).
+compress([X,Y|T],[X,Y|L]) :- X \= Y, !,compress([Y|T],[Y|L]).
